@@ -32,3 +32,31 @@ This API uses `User-Agent` and `Application-Id` headers to identify API consumer
 User-Agent: Mozilla/5.0 (Linux; Android 4.4; Nexus 5 Build/_BuildID_) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36
 Application-Id: 6454d937-0a18-44a8-b482-bb48684f1ed4
 ```
+
+## Filtering, Ordering, Pagination & Searching
+
+### Filtering
+
+This API can filter returned collections based on provided query parameters. Virtually any model field can be used as a filter.
+
+For example, when requesting a list of movies from the /movies endpoint, you may want to limit these to only those of drama genre. This could be accomplished with a request like `GET /movies?genre=drama`. Here, genre is a query parameter that implements a filter.
+
+### Ordering
+
+This API can sort returned collections. A generic query parameter `sort` is used to describe sorting rules. This parameter can take a list of comma separated field, each with a possible unary negative to imply descending sort order.
+
+E.g. `GET /movies?sort=-rating` - Retrieves a list of movies in descending order of user rating.
+
+By default all resources are ordered by their creation time, from newest to oldest.
+
+### Pagintation
+
+This API uses the [Link header - RFC 5988](http://tools.ietf.org/html/rfc5988#page-6) to include pagination details.
+
+An example of a Link header is described in [GitHub documentation](https://developer.github.com/guides/traversing-with-pagination/).
+
+This API returns total count of paged resources in `Total-Count` HTTP header.
+
+### Searching
+
+This API uses a generic parameter `search` to expose a full text search mechanism.
