@@ -2,6 +2,16 @@
   "name": "api-blueprint-boilerplate",
   "version": "0.0.0",
   "description": "API Blueprint boilerplate with Drafter.js schema validation and Apiary CLI included",
+  "engines": {
+    "node": ">=6.2.0"
+  },
+  "devDependencies": {
+    "api-blueprint-validator-module": "^1.1.0",
+    "yargs": "^4.8.0"
+  },
+  "scripts": {
+    "test": "node validate.js --files src/**/*.apib"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jsynowiec/api-blueprint-boilerplate"
