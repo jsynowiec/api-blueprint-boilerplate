@@ -182,3 +182,13 @@ This API returns both, machine-readable error codes and human-readable error mes
 + `11003` - Bad authentication data - *Method requires authentication but it was not presented or was wholly invalid.*
 + `11005` - Account not allowed to access this endpoint
 + `13003` - Your account is suspended and is not permitted to access this feature
+
+## Versioning
+
+This API uses `Api-Version` header to identify requested version. Every **minor** version SHOULD be backward compatible. However, **major** versions MAY introduce *breaking changes*.
+
+`Api-Version: 1.0.0`
+
+This header SHOULD be present in every request. If not, API MUST use the newest available major release.
+
+If requested version is not available, API SHOULD try to fall back to the next available minor release.
