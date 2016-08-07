@@ -1,0 +1,19 @@
+{
+  "name": "api-blueprint-boilerplate",
+  "version": "0.0.0",
+  "description": "API Blueprint boilerplate with Drafter.js schema validation and Apiary CLI included",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsynowiec/api-blueprint-boilerplate"
+  },
+  "author": {
+    "name": "Jakub Synowiec",
+    "email": "jakub@jakubsynowiec.info",
+    "url": "https://jakubsynowiec.info"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jsynowiec/api-blueprint-boilerplate/issues"
+  },
+  "homepage": "https://github.com/jsynowiec/api-blueprint-boilerplate#readme"
+}
