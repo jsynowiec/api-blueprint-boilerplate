@@ -60,3 +60,13 @@ This API returns total count of paged resources in `Total-Count` HTTP header.
 ### Searching
 
 This API uses a generic parameter `search` to expose a full text search mechanism.
+
+## HTTP Methods
+
+This API uses HTTP verbs (methods) as following:
+
++ `GET` - *Read* - used to **read** (or retrieve) a representation of a resource,
++ `POST` - *Create* - used to **create** new resources. In particular, it's used to create subordinate resources.
++ `PUT` - *Update/Replace* - used for **update** capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource. ⚠️ On successful request, replaces identified resource with the request body.
++ `PATCH` - *Update/Modify* - used for **modify** capabilities. The PATCH request only needs to contain the changes to the resource, not the complete resource.
++ `DELETE` - *Delete* - used to **delete** a resource identified by a URI.
