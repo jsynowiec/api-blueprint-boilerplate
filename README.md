@@ -36,3 +36,7 @@ export APIARY_API_KEY="<apiary project name>"
 ```
 
 After that, you can run `npm run publish` command to upload your blueprint to Apiary project.
+
+## License
+MIT License. See the [LICENSE](https://github.com/jsynowiec/api-blueprint-boilerplate/blob/master/LICENSE)
+file.
