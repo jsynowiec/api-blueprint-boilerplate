@@ -244,3 +244,192 @@ Registers a new user (creates a user account).
         + password: `QXR0mi38a2` (string) - User password.
 
 + Response 201
+
+# Group User
+
+## User profile [/users/me]
+
+Current user MUST be identifed by JWT provided in the request header.
+
+### Retrieve current user [GET]
+
+**Authentication**: Yes
+
+Returns the current user.
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (User)
+
+### Update current user [PUT]
+
+**Authentication**: Yes
+
+Updates user profile of the current user.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+    + Attributes
+        + name: `John` (string) - First name of the user
+        + surname: `Doe` (string) - Last name of the user
+
++ Response 200 (application/json)
+    + Attributes (User)
+
+### Partialy update current user [PATCH]
+
+**Authentication**: Yes
+
+Updates only selected fields of user profile for the current user. Request must contain a JSON with some fields of the [User](#user) resource.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+    + Attributes
+        + name: `John Doe` (string) - First and second name of the user.
+
++ Response 200 (application/json)
+    + Attributes (User)
+
+### Delete current user account [DELETE]
+
+**Authentication**: Yes
+
+**Allowed user types:** *
+
+Deletes current user account with all associated data.
+
+After account is deleted all access tokens issued for this user MUST be invalidated.
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 204 (application/json)
+    + Attributes (User)
+
+## User password [/users/me/password]
+
+### Change current user password [PUT]
+
+**Authentication**: Yes
+
+**Allowed user types:** *
+
+Changes user password.
+
+After password is changed all access tokens issued for this user MUST be invalidated.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+    + Attributes
+        + old_password: `secret` (string)
+        + new_password: `$3C6e7` (string)
+
++ Response 200
+    + Attributes
+        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (string) - New JWT
+
+## User avatar [/users/me/avatar]
+
+### Set user avatar [POST]
+
+**Authentication**: Yes
+
+**Allowed user types:** *
+
+Sets user avatar.
+
+Either upload the raw binary ( **media** parameter) of the file, or its base64-encoded contents ( **media_data** parameter). Use raw binary when possible, because base64 encoding results in larger file sizes.
+
++ Request (multipart/form-data)
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200
+    + Attributes
+        + avatar: `https://...` (string) - Public download URL
+
+### Delete user avatar [DELETE]
+
+**Authentication**: Yes
+
+**Allowed user types:** *
+
+Restores user avatar to a *null* value.
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 204
+
+## User resource collection [/users]
+
+### Retrieve an array of Users [GET]
+
+**Authentication**: Yes
+
+**Allowed user types:** installer, administrator
+
+Returns an array of `User` resources.
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (array[User])
+
+## User resource [/users/{id}]
+
++ Parameters
+    + id: `a6vhAo3FG7t1` (string) - Id of the user resource.
+
+### Retrieve the user resource [GET]
+
+**Authentication**: Yes
+
+**Allowed user types:** installer, administrator
+
+Returns a single `User` resource for the given id.
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (User)
+
++ Response 404
+
+# Data Structures
+
+## User (object)
+
++ id: `a6vhAo3FG7t1` (string) - Resource ID.
++ createdAt: `2016-07-01T15:11:09.553Z` (string) - Date of user registration.
++ email: `john.doe@mail.com` (string) - Unique email address of the user.
+    + Default: `false`
++ facebookId: `888047057953991` (number, optional, nullable) - Facebook ID of the user if user account is linked to the Facebook account.
+    + Default: `null`
++ name: `John` (string, optional, nullable) - First name of the user.
+    + Default: `null`
++ surname: `Doe` (string, optional, nullable) - Last name of the user.
+    + Default: `null`
++ avatar: `null` (string, optional, nullable) - URL to user avatar.
+    + Default: `null`
