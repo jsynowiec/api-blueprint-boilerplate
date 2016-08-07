@@ -192,3 +192,55 @@ This API uses `Api-Version` header to identify requested version. Every **minor*
 This header SHOULD be present in every request. If not, API MUST use the newest available major release.
 
 If requested version is not available, API SHOULD try to fall back to the next available minor release.
+
+# Group Authentication
+
+## Acquire access token [POST /auth/login]
+
+**Authentication**: No
+
+Returns a new access token.
+
++ Request (application/json)
+    + Attributes
+        + login: `john.doe@mail.com` (string) - User email address
+        + password: `QXR0mi38a2` (string) - User password
+
++ Response 200 (application/json)
+    + Attributes
+        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - JWT
+
+## Refresh access token [POST /auth/refresh-token]
+
+**Authentication**: Yes
+
+Returns a new access token.
+
+Tokens that are expired MUST NOT be refreshed.
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes
+        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - New JWT
+
+## Register new user [POST /auth/register]
+
+**Authentication**: No
+
+Registers a new user (creates a user account).
+
++ Provided email address MUST be unique.
++ Passwords MUST have at least six characters.
++ Passwords MUST NOT contain the user name or parts of the user’s full name, such as his first name.
++ Passwords MUST use at least three of the four available character types: lowercase letters, uppercase letters, numbers, and symbols.
+
++ Request (application/json)
+    + Attributes
+        + email: `john.doe@mail.com` (string) - E-mail address.
+        + password: `QXR0mi38a2` (string) - User password.
+
++ Response 201
