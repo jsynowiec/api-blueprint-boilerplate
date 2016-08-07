@@ -101,3 +101,84 @@ This API uses short non-sequential url-friendly unique ids. Every resource id MU
 
 ### Example
 `a6vhAo3FG7t1`
+
+## Status Codes and Errors
+
+This API uses HTTP status codes to communicate with the API consumer.
+
++ `200 OK` - Response to a successful GET, PUT, PATCH or DELETE.
++ `201 Created` - Response to a POST that results in a creation.
++ `204 No Content` - Response to a successful request that won't be returning a body (like a DELETE request).
++ `400 Bad Request` - Malformed request; form validation errors.
++ `401 Unauthorized` - When no or invalid authentication details are provided.
++ `403 Forbidden` - When authentication succeeded but authenticated user doesn't have access to the resource.
++ `404 Not Found` - When a non-existent resource is requested.
++ `405 Method Not Allowed` - Method not allowed.
++ `406 Not Acceptable` - Could not satisfy the request Accept header.
++ `415 Unsupported Media Type` - Unsupported media type in request.
+
+### Error response
+
+This API returns both, machine-readable error codes and human-readable error messages in response body when an error is encountered.
+
+#### Example
+
+##### Validation Error
+
+```js
+{
+    "statusCode": 400,
+    "error": "Bad Request",
+    "message": "Invalid query parameters",
+    "data": {
+        "code": 10003,
+        "validation": {
+            "details":[
+                {
+                    "message": "\"name\" is required",
+                    "path": "name",
+                    "type": "any.required",
+                    "context": {
+                        "key": "name"
+                    }
+                },{
+                    "message": "\"email\" must be a valid email",
+                    "path": "email",
+                    "type": "string.email",
+                    "context": {
+                        "value": "foo",
+                        "key": "email"
+                    }
+                }
+            ],
+            "source": "query",
+            "keys": [ "name","email" ]
+        }
+    }
+}
+```
+
+##### Generic Error
+
+```js
+{
+    "statusCode": 403,
+    "error": "Forbidden",
+    "message": "Your account is suspended and is not permitted to access this feature",
+    "data": {
+        "code": 13003
+    }
+}
+```
+
+#### Error Codes Dictionary
+
++ `10003` - Invalid query parameters
++ `10005` - Date is not in ISO 8601 standard
++ `10010` - Invalid Content-Type
++ `10011` - Invalid User-Agent
++ `10012` - Invalid or missing Application-Id
++ `11001` - Invalid or expired token
++ `11003` - Bad authentication data - *Method requires authentication but it was not presented or was wholly invalid.*
++ `11005` - Account not allowed to access this endpoint
++ `13003` - Your account is suspended and is not permitted to access this feature
