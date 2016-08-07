@@ -12,7 +12,7 @@ This project requires [Node.js](https://nodejs.org/) 6.2+, [NPM](https://www.npm
 git clone https://github.com/jsynowiec/api-blueprint-boilerplate
 cd api-blueprint-boilerplate
 npm install
-bundler install
+bundle install
 npm start
 ```
 
@@ -28,7 +28,7 @@ To compile the blueprint run `npm run build`. Files will be written to the `buil
 
 ## Publishing to Apiary
 
-To publish your API Blueprint to [Apiary.io](http://apiary.io) you have to set two environment variables:
+To publish your blueprint to [Apiary.io](http://apiary.io) you have to set two environment variables:
 
 ```
 export APIARY_API_KEY="<token>"
