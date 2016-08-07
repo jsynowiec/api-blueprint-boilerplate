@@ -10,7 +10,7 @@ FORMAT: 1A
 + Every token MUST be refreshed before its expiration time,
 + Token MUST be provided in `Authorization` header,
 + Toke MUST be provided for each request that requires authentication,
-+ This API issues a **long-lived acces tokens** for consumers. A long-lived JWT generally SHOULD lasts about **30 days**. If no requests are made, the token MUST expire and the user MUST go through the login flow again to get a new one.
++ This API issues a **long-lived access tokens** for consumers. A long-lived JWT generally SHOULD lasts about **30 days**. If no requests are made, the token MUST expire and the user MUST go through the login flow again to get a new one.
 
 ### Example Header
 ```
@@ -249,7 +249,7 @@ Registers a new user (creates a user account).
 
 ## User profile [/users/me]
 
-Current user MUST be identifed by JWT provided in the request header.
+Current user MUST be identified by JWT provided in the request header.
 
 ### Retrieve current user [GET]
 
@@ -282,7 +282,7 @@ Updates user profile of the current user.
 + Response 200 (application/json)
     + Attributes (User)
 
-### Partialy update current user [PATCH]
+### Partially update current user [PATCH]
 
 **Authentication**: Yes
 
