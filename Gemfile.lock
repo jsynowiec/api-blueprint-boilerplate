@@ -1,0 +1,37 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.4.0)
+    apiaryio (0.5.1)
+      json (~> 1.8)
+      launchy (~> 2.4)
+      rack (~> 1.6.4)
+      rest-client (~> 1.8)
+      thor (~> 0.19.1)
+    domain_name (0.5.20160615)
+      unf (>= 0.0.5, < 1.0.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    json (1.8.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    mime-types (2.99.2)
+    netrc (0.11.0)
+    rack (1.6.4)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
+    thor (0.19.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  apiaryio
+
+BUNDLED WITH
+   1.12.5
