@@ -1,6 +1,6 @@
 {
   "name": "api-blueprint-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "API Blueprint boilerplate with Drafter.js schema validation and Apiary CLI included",
   "engines": {
     "node": ">=6.2.0"
