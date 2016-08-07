@@ -10,7 +10,8 @@
     "yargs": "^4.8.0"
   },
   "scripts": {
-    "test": "node validate.js --files src/**/*.apib"
+    "test": "node validate.js --files src/**/*.apib",
+    "start": "apiary preview --path=\"src/api.apib\" --server --port 8080"
   },
   "repository": {
     "type": "git",
