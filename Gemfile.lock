@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.4.0)
-    apiaryio (0.5.1)
+    apiaryio (0.5.2)
       json (~> 1.8)
       launchy (~> 2.4)
       rack (~> 1.6.4)
