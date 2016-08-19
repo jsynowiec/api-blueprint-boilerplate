@@ -32,7 +32,7 @@ To publish your blueprint to [Apiary.io](http://apiary.io) you have to set two e
 
 ```
 export APIARY_API_KEY="<token>"
-export APIARY_API_KEY="<apiary project name>"
+export APIARY_API_NAME="<apiary project name>"
 ```
 
 After that, you can run `npm run publish` command to upload your blueprint to Apiary project.
