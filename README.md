@@ -35,7 +35,7 @@ export APIARY_API_KEY="<token>"
 export APIARY_API_NAME="<apiary project name>"
 ```
 
-After that, you can run `npm run publish` command to upload your blueprint to Apiary project.
+After that, you can run `npm run publish` command to upload your blueprint to Apiary project. You can also provide those two values before the command, like `APIARY_API_KEY="<token>" APIARY_API_NAME="<apiary project name>" npm run publish`
 
 ## Resources
 
