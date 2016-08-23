@@ -17,7 +17,7 @@
     "build": "npm run clean && npm run setup && npm run build:blueprint && npm run build:raw",
     "build:blueprint": "apiary preview --path=\"src/api.apib\" --output=\"build/api.html\"",
     "build:raw": "cp src/api.apib ./api.md && generate-md --layout github --input ./api.md --output build/raw && rm ./api.md",
-    "test": "node validate.js --files src/**/*.apib",
+    "test": "node validate.js --files 'src/**/*.apib'",
     "start": "apiary preview --path=\"src/api.apib\" --server --port 8080",
     "publish": "apiary publish --api-name=\"${APIARY_API_NAME}\" --path=\"src/api.apib\""
   },
