@@ -92,7 +92,7 @@ file.
 [github-star-badge]: https://img.shields.io/github/stars/jsynowiec/api-blueprint-boilerplate.svg?style=social
 [github-star]: https://github.com/jsynowiec/api-blueprint-boilerplate/stargazers
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20the%20%40apiblueprint%20boilerplate!%20https://github.com/jsynowiec/api-blueprint-boilerplate%20%F0%9F%91%8D
-[twitter-badge]: https://img.shields.io/twitter/url/https/github.com/kentcdodds/match-sorter.svg?style=social
+[twitter-badge]: https://img.shields.io/twitter/url/https/jsynowiec/api-blueprint-boilerplate.svg?style=social
 [api-blueprint]: https://apiblueprint.org/
 [api-blueprint-specification]: https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md
 [apiaryio]: http://apiary.io
