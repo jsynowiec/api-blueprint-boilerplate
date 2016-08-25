@@ -1,3 +1,10 @@
+[![devDependency Status](https://david-dm.org/jsynowiec/api-blueprint-boilerplate/dev-status.svg)](https://david-dm.org/jsynowiec/api-blueprint-boilerplate?type=dev)
+
+[![Required Node.js](https://img.shields.io/badge/node->=%206.2.x-blue.svg)](https://nodejs.org/dist/latest-v6.x/docs/api/)
+[![Required Node.js](https://img.shields.io/badge/npm->=%203.x-blue.svg)](https://nodejs.org/dist/latest-v6.x/docs/api/)
+[![Required Ruby](https://img.shields.io/badge/ruby->=%202.x-blue.svg)](http://ruby-doc.org/)
+[![Required Bundler](https://img.shields.io/badge/bundler-latest-blue.svg)](http://bundler.io/docs.html)
+
 # api-blueprint-boilerplate
 
 Minimalistic boilerplate to quick-start API specification using [API Blueprint](https://apiblueprint.org/) description language.
