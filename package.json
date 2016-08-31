@@ -6,7 +6,7 @@
     "node": ">=6.2.0"
   },
   "devDependencies": {
-    "api-blueprint-validator-module": "^1.1.0",
+    "api-blueprint-validator-module": "^1.2.1",
     "markdown-styles": "^3.1.6",
     "rimraf": "^2.5.4",
     "yargs": "^5.0.0"
