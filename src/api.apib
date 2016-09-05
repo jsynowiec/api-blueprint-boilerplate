@@ -421,10 +421,10 @@ Returns a single `User` resource for the given id.
 
 ## User (object)
 
-+ id: `a6vhAo3FG7t1` (string) - Resource ID.
-+ createdAt: `2016-07-01T15:11:09.553Z` (string) - Date of user registration.
-+ email: `john.doe@mail.com` (string) - Unique email address of the user.
-    + Default: `false`
++ id: `a6vhAo3FG7t1` (string, fixed) - Short non-sequential url-friendly unique id.
++ createdAt: `2016-07-01T15:11:09.553Z` (string) - ISO Date/time string. When this resource was created.
++ updatedAt: `2016-07-01T15:11:09.553Z` (string) - ISO Date/time string. When this resource was last updated.
++ email: `john.doe@mail.com` (string, required) - Login. Unique email address of the user.
 + facebookId: `888047057953991` (number, optional, nullable) - Facebook ID of the user if user account is linked to the Facebook account.
     + Default: `null`
 + name: `John` (string, optional, nullable) - First name of the user.
