@@ -67,7 +67,7 @@ This API uses HTTP verbs (methods) as following:
 
 + `GET` - *Read* - used to **read** (or retrieve) a representation of a resource,
 + `POST` - *Create* - used to **create** new resources. In particular, it's used to create subordinate resources.
-+ `PUT` - *Update/Replace* - used for **update** capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource. ⚠️ On successful request, replaces identified resource with the request body.
++ `PUT` - *Update/Replace* - used for **update** capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource. On successful request, replaces identified resource with the request body.
 + `PATCH` - *Update/Modify* - used for **modify** capabilities. The PATCH request only needs to contain the changes to the resource, not the complete resource.
 + `DELETE` - *Delete* - used to **delete** a resource identified by a URI.
 
@@ -195,28 +195,42 @@ If requested version is not available, API SHOULD try to fall back to the next a
 
 # Group Authentication
 
-## Acquire access token [POST /auth/login]
+## User login [/auth/login]
 
-**Authentication**: No
+Access tokens are required to access nearly all endpoints of this API.
 
-Returns a new access token.
+### Retrieve a token [POST]
+
+Allows to retrieve a valid JSON Web Token for username and password.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+| Has restricted scope    | No  |
 
 + Request (application/json)
     + Attributes
-        + login: `john.doe@mail.com` (string) - User email address
-        + password: `QXR0mi38a2` (string) - User password
+        + login: `john.doe@mail.com` (string, required) - User email address
+        + password: `QXR0mi38a2` (string, required) - User password
 
 + Response 200 (application/json)
     + Attributes
-        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - JWT
+        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - JSON Web Token.
 
-## Refresh access token [POST /auth/refresh-token]
+## Refresh a token [POST /auth/refresh-token]
 
-**Authentication**: Yes
+Allows to retrieve a new, valid JSON Web Token based on a valid JSON Web Token.
 
-Returns a new access token.
+Expired tokens MUST NOT be refreshed.
 
-Tokens that are expired MUST NOT be refreshed.
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
 
 + Request
     + Headers
@@ -227,130 +241,139 @@ Tokens that are expired MUST NOT be refreshed.
     + Attributes
         + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - New JWT
 
-## Register new user [POST /auth/register]
+## User registration [/auth/register]
 
-**Authentication**: No
+### Register a new user [POST]
 
-Registers a new user (creates a user account).
+Creates a new user account.
 
 + Provided email address MUST be unique.
 + Passwords MUST have at least six characters.
 + Passwords MUST NOT contain the user name or parts of the user’s full name, such as his first name.
 + Passwords MUST use at least three of the four available character types: lowercase letters, uppercase letters, numbers, and symbols.
 
+After successful registration a confirmation email MUST be sent to provided address.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+
+**Error codes**
+
+|       |         |                                             |
+|-------|---------| ------------------------------------------- |
+| `400` | `4001` | Password doesn't match password guidelines  |
+| `400` | `3001` | User already exists                         |
+
 + Request (application/json)
     + Attributes
-        + email: `john.doe@mail.com` (string) - E-mail address.
-        + password: `QXR0mi38a2` (string) - User password.
+        + email: `john.doe@mail.com` (string, required) - E-mail address.
+        + password: `QXR0mi38a2` (string, required) - User password.
 
 + Response 201
 
 # Group User
 
-## User profile [/users/me]
+## Current user profile [/users/me]
 
-Current user MUST be identified by JWT provided in the request header.
+Current user MUST be identifed by JWT provided in request header.
 
-### Retrieve current user [GET]
+### Retrieve profile of the current user [GET]
 
-**Authentication**: Yes
+Retrieves the profile of the current user.
 
-Returns the current user.
+**Endpoint information**
 
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
-
-+ Response 200 (application/json)
-    + Attributes (User)
-
-### Update current user [PUT]
-
-**Authentication**: Yes
-
-Updates user profile of the current user.
-
-+ Request (application/json)
-    + Headers
-
-            Authorization: JWT <token>
-    + Attributes
-        + name: `John` (string) - First name of the user
-        + surname: `Doe` (string) - Last name of the user
-
-+ Response 200 (application/json)
-    + Attributes (User)
-
-### Partially update current user [PATCH]
-
-**Authentication**: Yes
-
-Updates only selected fields of user profile for the current user. Request must contain a JSON with some fields of the `User` resource.
-
-+ Request (application/json)
-    + Headers
-
-            Authorization: JWT <token>
-    + Attributes
-        + name: `John Doe` (string) - First and second name of the user.
-
-+ Response 200 (application/json)
-    + Attributes (User)
-
-### Delete current user account [DELETE]
-
-**Authentication**: Yes
-
-**Allowed user types:** *
-
-Deletes current user account with all associated data.
-
-After account is deleted all access tokens issued for this user MUST be invalidated.
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
 
 + Request
     + Headers
 
             Authorization: JWT <token>
 
-+ Response 204 (application/json)
++ Response 200 (application/json)
+    + Attributes (User)
+
+### Partialy update a profile of the current user [PATCH]
+
+Updates a profile of the current user setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
++ Request (application/json)
+    + Headers
+
+            Authorization: JWT <token>
+    + Attributes
+        + name: `Ben` (string) - First name of the user.
+
++ Response 200 (application/json)
     + Attributes (User)
 
 ## User password [/users/me/password]
 
-### Change current user password [PUT]
-
-**Authentication**: Yes
-
-**Allowed user types:** *
+### Change a password of the current user [PUT]
 
 Changes user password.
 
-After password is changed all access tokens issued for this user MUST be invalidated.
+After password is changed all access tokens issued for this user prior to password change must be invalidated.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                                           |
+|-------|---------| ----------------------------------------- |
+| `400` | `4001` | Password doesn't match password guidelines |
 
 + Request (application/json)
     + Headers
 
             Authorization: JWT <token>
     + Attributes
-        + old_password: `secret` (string)
-        + new_password: `$3C6e7` (string)
+        + old_password: `secret` (string, required)
+        + new_password: `$3C6e7` (string, required)
 
 + Response 200
     + Attributes
-        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (string) - New JWT
+        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (string) - New JSON Web Token.
 
 ## User avatar [/users/me/avatar]
 
 ### Set user avatar [POST]
 
-**Authentication**: Yes
-
-**Allowed user types:** *
-
 Sets user avatar.
 
 Either upload the raw binary ( **media** parameter) of the file, or its base64-encoded contents ( **media_data** parameter). Use raw binary when possible, because base64 encoding results in larger file sizes.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                       |
+|-------|---------| --------------------- |
+| `400` | `2001`  | File is too large     |
+| `400` | `2002`  | Unsupported file type |
 
 + Request (multipart/form-data)
     + Headers
@@ -363,11 +386,14 @@ Either upload the raw binary ( **media** parameter) of the file, or its base64-e
 
 ### Delete user avatar [DELETE]
 
-**Authentication**: Yes
+Restores user avatar to the default one.
 
-**Allowed user types:** *
+**Endpoint information**
 
-Restores user avatar to a *null* value.
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
 
 + Request
     + Headers
@@ -376,15 +402,16 @@ Restores user avatar to a *null* value.
 
 + Response 204
 
-## User resource collection [/users]
+## Users [/users]
 
-### Retrieve an array of Users [GET]
+### List all users [GET]
 
-**Authentication**: Yes
+Returns a list of users. The users are returned in sorter order, with the most recently created user accounts appearing first.
 
-**Allowed user types:** installer, administrator
-
-Returns an array of `User` resources.
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
 
 + Request
     + Headers
@@ -394,18 +421,25 @@ Returns an array of `User` resources.
 + Response 200 (application/json)
     + Attributes (array[User])
 
-## User resource [/users/{id}]
+## User [/users/{id}]
 
 + Parameters
-    + id: `a6vhAo3FG7t1` (string) - Id of the user resource.
+    + id: `a6vhAo3FG7t1` (string) - id of the user.
 
-### Retrieve the user resource [GET]
+### Retrieve a user [GET]
 
-**Authentication**: Yes
+Retrieves the details of an existing user.
 
-**Allowed user types:** installer, administrator
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
 
-Returns a single `User` resource for the given id.
+**Error codes**
+
+|       |         |                               |
+|-------|---------| ----------------------------- |
+| `400` | `1000`  | Referenced resource not found |
 
 + Request
     + Headers
