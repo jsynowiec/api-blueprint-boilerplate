@@ -20,6 +20,8 @@ Minimalistic boilerplate to quick-start API specification using [API Blueprint][
 
 Provides a basic template for REST API documentation that contains some best practices for a pragmatic RESTful API and a set of tools to validate API Blueprint schema or export specification to HTML files.
 
+Sample project is available in Apary: http://docs.apiblueprintboilerplate.apiary.io/
+
 ## Quick start
 
 This project requires [Node.js][nodejs] 6.2+, [NPM][npm], [Ruby][ruby] and [Bundler][bundler]. So just make sure you have those installed. Then just type following commands:
