@@ -102,4 +102,4 @@ file.
 [apiaryio-cli]: https://help.apiary.io/tools/apiary-cli/
 [drafterjs]: https://github.com/apiaryio/drafter.js
 [mson-specification]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md
-[vscode-apielements]: [https://github.com/XVincentX/vscode-apielements]
+[vscode-apielements]: https://github.com/XVincentX/vscode-apielements
