@@ -64,6 +64,7 @@ APIARY_API_KEY="<token>" APIARY_API_NAME="<apiary project name>" npm run publish
 * [API Blueprint][api-blueprint],
 * [API Blueprint Specification][api-blueprint-specification],
 * [MSON Specification][mson-specification],
+* [VS Code API Elements extension][vscode-apielements],
 * [Apiary.io][apiaryio],
 * [Drafter.js][drafterjs],
 
@@ -101,3 +102,4 @@ file.
 [apiaryio-cli]: https://help.apiary.io/tools/apiary-cli/
 [drafterjs]: https://github.com/apiaryio/drafter.js
 [mson-specification]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md
+[vscode-apielements]: [https://github.com/XVincentX/vscode-apielements]
