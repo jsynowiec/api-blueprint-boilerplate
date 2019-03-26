@@ -88,8 +88,8 @@ file.
 [roadmap]: https://github.com/jsynowiec/api-blueprint-boilerplate/wiki/Roadmap
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
-[donate-badge]: https://img.shields.io/badge/$-support-green.svg?style=flat-square
-[donate]: http://bit.ly/donate-js
+[donate-badge]: https://img.shields.io/badge/€-support-green.svg?style=flat-square
+[donate]: https://paypal.me/jaqb/5eur
 [github-watch-badge]: https://img.shields.io/github/watchers/jsynowiec/api-blueprint-boilerplate.svg?style=social
 [github-watch]: https://github.com/jsynowiec/api-blueprint-boilerplate/watchers
 [github-star-badge]: https://img.shields.io/github/stars/jsynowiec/api-blueprint-boilerplate.svg?style=social
