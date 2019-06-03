@@ -6,11 +6,11 @@ FORMAT: 1A
 
 ## Authentication
 
-+ This API uses [JWT](http://jwt.io/) for authentication,
-+ Every token MUST be refreshed before its expiration time,
-+ Token MUST be provided in `Authorization` header,
-+ Toke MUST be provided for each request that requires authentication,
-+ This API issues a **long-lived access tokens** for consumers. A long-lived JWT generally SHOULD lasts about **30 days**. If no requests are made, the token MUST expire and the user MUST go through the login flow again to get a new one.
++ This API uses [JWT](http://jwt.io/) for authentication.
++ Every token MUST be refreshed before its expiration time.
++ Token MUST be provided in `Authorization` header.
++ Token MUST be provided for each request that requires authentication.
++ This API issues a **long-lived access tokens** for consumers. A long-lived JWT generally SHOULD last about **30 days**. If no requests are made, the token MUST expire and the user MUST log in again to get a new one.
 
 > A custom scheme like "JWT" seems to be more appropriate than coercing the OAuth2 Bearer scheme.
 
@@ -67,7 +67,7 @@ This API uses a generic parameter `search` to expose a full text search mechanis
 
 This API uses HTTP verbs (methods) as following:
 
-+ `GET` - *Read* - used to **read** (or retrieve) a representation of a resource,
++ `GET` - *Read* - used to **read** (or retrieve) a representation of a resource.
 + `POST` - *Create* - used to **create** new resources. In particular, it's used to create subordinate resources.
 + `PUT` - *Update/Replace* - used for **update** capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource. On successful request, replaces identified resource with the request body.
 + `PATCH` - *Update/Modify* - used for **modify** capabilities. The PATCH request only needs to contain the changes to the resource, not the complete resource.
@@ -207,10 +207,10 @@ Allows to retrieve a valid JSON Web Token for username and password.
 
 **Endpoint information**
 
-|                         |     |
-|-------------------------|-----|
-| Requires authentication | No  |
-| Has restricted scope    | No  |
+|                         |    |
+|-------------------------|----|
+| Requires authentication | No |
+| Has restricted scope    | No |
 
 + Request (application/json)
     + Attributes
@@ -258,16 +258,16 @@ After successful registration a confirmation email MUST be sent to provided addr
 
 **Endpoint information**
 
-|                         |     |
-|-------------------------|-----|
-| Requires authentication | No  |
+|                         |    |
+|-------------------------|----|
+| Requires authentication | No |
 
 **Error codes**
 
-|       |         |                                             |
-|-------|---------| ------------------------------------------- |
-| `400` | `4001` | Password doesn't match password guidelines  |
-| `400` | `3001` | User already exists                         |
+|       |        |                                            |
+|-------|--------|--------------------------------------------|
+| `400` | `4001` | Password doesn't match password guidelines |
+| `400` | `3001` | User already exists                        |
 
 + Request (application/json)
     + Attributes
@@ -303,7 +303,7 @@ Retrieves the profile of the current user.
 
 ### Partialy update a profile of the current user [PATCH]
 
-Updates a profile of the current user setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+Updates the profile of the current user setting the values of the parameters passed. Any parameters not provided will be left unchanged.
 
 **Endpoint information**
 
@@ -339,8 +339,8 @@ After password is changed all access tokens issued for this user prior to passwo
 
 **Error codes**
 
-|       |         |                                           |
-|-------|---------| ----------------------------------------- |
+|       |        |                                            |
+|-------|--------|--------------------------------------------|
 | `400` | `4001` | Password doesn't match password guidelines |
 
 + Request (application/json)
@@ -372,10 +372,10 @@ Either upload the raw binary ( **media** parameter) of the file, or its base64-e
 
 **Error codes**
 
-|       |         |                       |
-|-------|---------| --------------------- |
-| `400` | `2001`  | File is too large     |
-| `400` | `2002`  | Unsupported file type |
+|       |        |                       |
+|-------|--------|-----------------------|
+| `400` | `2001` | File is too large     |
+| `400` | `2002` | Unsupported file type |
 
 + Request (multipart/form-data)
     + Headers
@@ -408,7 +408,7 @@ Restores user avatar to the default one.
 
 ### List all users [GET]
 
-Returns a list of users. The users are returned in sorter order, with the most recently created user accounts appearing first.
+Returns a list of users. The users are returned in sorted order, with the most recently created user accounts appearing first.
 
 |                         |     |
 |-------------------------|-----|
@@ -439,9 +439,9 @@ Retrieves the details of an existing user.
 
 **Error codes**
 
-|       |         |                               |
-|-------|---------| ----------------------------- |
-| `400` | `1000`  | Referenced resource not found |
+|       |        |                               |
+|-------|--------|-------------------------------|
+| `400` | `1000` | Referenced resource not found |
 
 + Request
     + Headers
